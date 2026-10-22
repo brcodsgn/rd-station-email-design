@@ -16,7 +16,6 @@ references/bee-api.md       snippets do editor BEE e formato do JSON
 references/armadilhas.md    problemas reais e soluções
 examples/exemplo-email.js   montagem completa (conteúdo genérico)
 scripts/pdf-para-png.swift  extrai páginas de PDF em PNG + texto (PDFKit)
-scripts/webp/               conversor WebP com o encoder do Chrome
 ```
 
 ## Instalação
