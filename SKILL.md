@@ -34,6 +34,13 @@ Objetivo: e-mail **editável pela equipe** (módulos nativos do editor), **fiel 
 - Elementos que quebram no mobile (chips, setas, linhas do tempo, legendas sobre foto, áreas demarcadas no corpo) → **vire imagem** (mesmo processo).
 - **Nunca gere** imagens que pareçam exame, microscopia ou antes/depois de paciente. Use as figuras reais do estudo/material: extraia o PDF com `scripts/pdf-para-png.swift` (PDFKit, sem dependências), recorte com `sips -c h w --cropOffset y x` e adicione legendas embaixo (ex.: os rótulos de tempo ou de etapa de cada figura). Imagem ilustrativa de algo citado como real → avise que deve ser trocada.
 
+## 3b. Converter para WebP (antes de enviar ao usuário)
+- Toda imagem final (hero, fotos, figuras, imagens com texto) vai em **.webp**: largura 2× a exibida (1200px para largura total, ~1104px para largura de texto), alvo ≤ 100 KB (fundos e heros até ~150 KB).
+- Sem `cwebp` no Mac e o `sips` não grava WebP: use `scripts/webp/` (encoder do próprio Chrome). Coloque os originais em `<pasta>/orig/`, crie `<pasta>/lista.json` (`{"arquivo.jpg":[1200,100]}`), rode `python3 scripts/webp/servidor.py <pasta>` e abra `http://127.0.0.1:4322/converter.html` no Chrome; os arquivos saem em `<pasta>/webp/` com `resumo.json`.
+- Compare original × WebP lado a lado (folha de contato) antes de enviar; texto dentro da imagem não pode ficar borrado (suba a qualidade se ficar).
+- Mantenha o mesmo nome-base (`hero.webp`) e use esses arquivos no preview, no envio ao usuário e na verificação do passo 5.
+- Atenção: o Outlook para Windows (desktop) não exibe WebP. Se a base tiver muitos leitores Outlook, avise o usuário e mantenha o JPG/PNG.
+
 ## 4. Preview HTML para aprovação
 - E-mail em HTML de tabelas, 600px, estilos inline, um único sistema de margens (ex.: 24 ou 36px), botão "bulletproof".
 - Publique como artifact (mesmo arquivo = mesmo link) e renderize localmente para revisar (Chrome headless). O teste mobile local sem viewport meta é enganoso — o mobile real se confere no editor do RD.
